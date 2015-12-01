@@ -32,7 +32,7 @@ class CalculatorBrain
     
     private var opStack = [Op]()
     private var knownOps = [String:Op]()
-    private var pi = 3.14159265359
+    private var pi = M_PI
     
     init () {
         func learnOp(op: Op) {
@@ -48,6 +48,7 @@ class CalculatorBrain
         
     }
     
+    // Waar word dit eigenlijk aangeroepen?
     typealias  PropertyList = AnyObject
     var program: PropertyList { // guaranteed to be a propertyList
         get {
@@ -74,6 +75,7 @@ class CalculatorBrain
         if !ops.isEmpty {
             var remainingOps = ops
             let op = remainingOps.removeLast()
+//            let op = removeOperand(result)
             
             switch op {
             case .Operand(let operand):
@@ -120,7 +122,9 @@ class CalculatorBrain
     func performOperation(symbol: String) -> Double? {
         if let operation = knownOps[symbol] {
             opStack.append(operation)
+            print("operation: \(operation)")
+            print("operation: \(symbol)")
         }
         return evaluate()
-    }
+    }    
 }

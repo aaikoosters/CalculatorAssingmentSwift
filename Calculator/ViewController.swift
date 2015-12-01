@@ -12,6 +12,7 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet weak var display: UILabel!
+    @IBOutlet weak var somDisplay: UILabel!
     
     // Door output na = weet ie welk type het is dus :Bool hoeft niet meer
     var userTyped = false
@@ -22,7 +23,6 @@ class ViewController: UIViewController {
     @IBAction func appendDigit(sender: UIButton)
     {
         let digit = sender.currentTitle!
-        
         if userTyped {
             display.text = display.text! + digit
         } else {
@@ -38,6 +38,15 @@ class ViewController: UIViewController {
             return NSNumberFormatter().numberFromString(display.text!)!.doubleValue
         }
         set{
+            display.text = "\(newValue)"
+            userTyped = false
+        }
+    }
+    
+    var displaySomValue: Double {
+        get {
+            return NSNumberFormatter().numberFromString(somDisplay.text!)!.doubleValue
+        } set {
             display.text = "\(newValue)"
             userTyped = false
         }
@@ -73,11 +82,39 @@ class ViewController: UIViewController {
         
     }
     
+    var memValue = Double()
+    var geheugen = Double()
+    
+    @IBAction func memory(sender: UIButton) {
+        /*
+        Als Mc is gedrukt: dan memoryValue is 0
+        Als M+ is gedrukt: dan displayValue opslaan in memoryValue
+        Als M is gedrukt: memoryValue weergeven
+        */
+        let operation = sender.currentTitle!
+        
+        switch operation {
+            case "MC":
+                memValue = 0
+                display.text! = String(memValue)
+            case "M+":
+                memValue = Double(display.text!)!
+                geheugen = memValue
+            case "M":
+                display.text! = String(memValue)
+        default: break
+        }
+        userTyped = false
+        
+    }
+    
+    
     // Door middel van '\()' kan je argumenten in een string opnemen
     @IBAction func enter() {
         userTyped = false
         pointTyped = false
         if let result = brain.pushOperand(displayValue) {
+            somDisplay.text! += "\(result), "
             displayValue = result
         } else {
             displayValue = 0
