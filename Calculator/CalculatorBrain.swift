@@ -10,7 +10,7 @@ import Foundation
 
 class CalculatorBrain
 {
-    private enum Op
+    private enum Op: CustomStringConvertible
     {
         case Operand(Double)
         case UnaryOperation(String, Double -> Double)
@@ -45,6 +45,9 @@ class CalculatorBrain
         knownOps["-"] = Op.BinaryOperation("-") {$0 - $01}
         knownOps["√"] = Op.UnaryOperation("√", sqrt)
         knownOps["Pi"] = Op.UnaryOperation("Pi") {$0 * self.pi }
+        knownOps["COS"] = Op.UnaryOperation("COS", cos)
+        knownOps["SIN"] = Op.UnaryOperation("SIN", sin)
+        knownOps["TAN"] = Op.UnaryOperation("TAN", tan)
         
     }
     
@@ -80,11 +83,13 @@ class CalculatorBrain
             switch op {
             case .Operand(let operand):
                 return (operand, remainingOps)
+                
             case .UnaryOperation(_, let operation):
                 let operandEvaluation = evaluate(remainingOps)
                 if let operand = operandEvaluation.result {
-                return (operation(operand), operandEvaluation.remainingOps)
+                    return (operation(operand), operandEvaluation.remainingOps)
                 }
+                
             case .BinaryOperation(_, let operation):
                 let op1Evaluation = evaluate(remainingOps)
                 if let operand1 = op1Evaluation.result {
@@ -100,7 +105,7 @@ class CalculatorBrain
     
     func evaluate() -> Double? { // make optional because + or - or * or / isnt a double
      let (result, remainder) = evaluate(opStack)
-        print("\(result!) with \(remainder) left over")
+        print("\(result) with \(remainder) left over")
         return result
     }
     
@@ -112,11 +117,19 @@ class CalculatorBrain
     func removeOperand(operand: Double) -> Double {
         
         if opStack.isEmpty {
-            return 0
+            return operand
              } else {
             opStack.removeLast()
         }
         return 0
+    }
+    
+    func getAll() -> String? {
+        var returnAll = ""
+        for all in opStack {
+            returnAll += ("\(all), ")
+        }
+        return returnAll
     }
     
     func performOperation(symbol: String) -> Double? {
@@ -126,5 +139,10 @@ class CalculatorBrain
             print("operation: \(symbol)")
         }
         return evaluate()
-    }    
+    }
+    
+    func clearAll() -> Double {
+        opStack.removeAll()
+        return 0.0
+    }
 }

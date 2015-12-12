@@ -121,10 +121,17 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func clear() {
+    @IBAction func clear(sender: UIButton) {
         userTyped = false
-        let result = brain.removeOperand(displayValue)
-        displayValue = result
+        if sender.currentTitle! == "←" {
+            let result = brain.clearAll()
+            displaySomValue = result
+            somDisplay.text! = "0"
+        } else {
+            somDisplay.text! = brain.getAll()!
+            let result = brain.removeOperand(displayValue)
+            displayValue = result
+        }
     }
 }
 

@@ -14,6 +14,7 @@
 		AB13F7C61BFA0E4B00B0C1E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB13F7C41BFA0E4B00B0C1E0 /* LaunchScreen.storyboard */; };
 		AB13F7D11BFA0E4B00B0C1E0 /* CalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB13F7D01BFA0E4B00B0C1E0 /* CalculatorTests.swift */; };
 		AB13F7DC1BFA0E4C00B0C1E0 /* CalculatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB13F7DB1BFA0E4C00B0C1E0 /* CalculatorUITests.swift */; };
+		AB6C31FD1C147DAE006E1EE4 /* SomCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6C31FC1C147DAE006E1EE4 /* SomCalculator.swift */; };
 		AB7D5EC51C030EEF00623288 /* CalculatorBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7D5EC41C030EEF00623288 /* CalculatorBrain.swift */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +49,7 @@
 		AB13F7D71BFA0E4B00B0C1E0 /* CalculatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CalculatorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB13F7DB1BFA0E4C00B0C1E0 /* CalculatorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorUITests.swift; sourceTree = "<group>"; };
 		AB13F7DD1BFA0E4C00B0C1E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AB6C31FC1C147DAE006E1EE4 /* SomCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SomCalculator.swift; sourceTree = "<group>"; };
 		AB7D5EC41C030EEF00623288 /* CalculatorBrain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorBrain.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -106,6 +108,7 @@
 				AB13F7C21BFA0E4B00B0C1E0 /* Assets.xcassets */,
 				AB13F7C41BFA0E4B00B0C1E0 /* LaunchScreen.storyboard */,
 				AB13F7C71BFA0E4B00B0C1E0 /* Info.plist */,
+				AB6C31FC1C147DAE006E1EE4 /* SomCalculator.swift */,
 			);
 			path = Calculator;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 				AB7D5EC51C030EEF00623288 /* CalculatorBrain.swift in Sources */,
 				AB13F7BE1BFA0E4B00B0C1E0 /* ViewController.swift in Sources */,
 				AB13F7BC1BFA0E4B00B0C1E0 /* AppDelegate.swift in Sources */,
+				AB6C31FD1C147DAE006E1EE4 /* SomCalculator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
