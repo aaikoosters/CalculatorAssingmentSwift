@@ -74,13 +74,18 @@ class ViewController: UIViewController {
             brain.performOperation(sting)
         }
         let operation = sender.currentTitle!
-            if let result = brain.performOperation(operation) {
+        let resultStr = brain.performOperation(operation)
+            if let result = resultStr.result {
                 displayValue = result
-            } else {
-                displayValue = 0
-            }
+        }
+        if let som = resultStr.description {
+            somDisplay.text = som
+        }         else {
+            displayValue = 0
+        }
         
     }
+    
     
     var memValue = Double()
     var geheugen = Double()
@@ -107,6 +112,23 @@ class ViewController: UIViewController {
         userTyped = false
         
     }
+    
+    @IBAction func pushTableValue()
+    {
+        brain.setValueForGo("GO", value: displayValue)
+        
+        let resultString = brain.evaluate()
+        
+        if let result = resultString.result
+        {
+            displayValue = result
+        }
+        if let text = resultString.description
+        {
+            somDisplay.text = text
+        }
+    }
+
     
     
     // Door middel van '\()' kan je argumenten in een string opnemen

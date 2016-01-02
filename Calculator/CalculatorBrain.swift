@@ -12,19 +12,18 @@ class CalculatorBrain
 {
     private enum Op: CustomStringConvertible
     {
+        case Variable(String)
         case Operand(Double)
         case UnaryOperation(String, Double -> Double)
         case BinaryOperation(String, (Double, Double) -> Double)
         
-        var description: String {
+        var description : String {
             get {
                 switch self {
-                case .Operand(let operand):
-                    return "\(operand)"
-                case .UnaryOperation(let symbol, _):
-                    return symbol
-                case .BinaryOperation(let symbol, _):
-                    return symbol
+                case .Operand( let operand) : return "\(operand)"
+                case .Variable(let variable) : return variable
+                case .BinaryOperation(let symbol, _): return symbol
+                case .UnaryOperation(let symbol, _): return symbol
                 }
             }
         }
@@ -72,46 +71,76 @@ class CalculatorBrain
         }
     }
     
+    var variableValues = [String :Double]()
+    func setValueForGo( GO : String, value : Double)
+    {
+        
+        variableValues.updateValue(value, forKey: GO)
+    }
+    
     
     // -> vertelt wat er gerunt moet worden
-    private func evaluate(ops: [Op]) -> (result: Double?, remainingOps: [Op]) {
-        if !ops.isEmpty {
+    private func evaluate( ops : [Op]) ->(result :Double?, remainingOps :[Op])
+    {
+        if !ops.isEmpty
+        {
             var remainingOps = ops
-            let op = remainingOps.removeLast()
-//            let op = removeOperand(result)
-            
-            switch op {
-            case .Operand(let operand):
-                return (operand, remainingOps)
+            let op  = remainingOps.removeLast()
+            switch op
+            {
                 
-            case .UnaryOperation(_, let operation):
-                let operandEvaluation = evaluate(remainingOps)
-                if let operand = operandEvaluation.result {
-                    return (operation(operand), operandEvaluation.remainingOps)
+            case .Operand(let operand) :
+                return(operand, remainingOps)
+            case .Variable(let variable) :
+                let value = variableValues[variable]
+                return (value, remainingOps)
+                
+            case .UnaryOperation(_, let operation) :
+                let operandEvalutation = evaluate(remainingOps)
+                if let operand = operandEvalutation.result
+                {
+                    return (operation(operand),operandEvalutation.remainingOps)
                 }
                 
             case .BinaryOperation(_, let operation):
-                let op1Evaluation = evaluate(remainingOps)
-                if let operand1 = op1Evaluation.result {
-                    let op2Evaluation = evaluate(op1Evaluation.remainingOps)
-                    if let operand2 = op2Evaluation.result {
-                        return (operation(operand1, operand2), op2Evaluation.remainingOps)
+                let operand1Evalutation = evaluate(remainingOps)
+                if let operand1 = operand1Evalutation.result
+                {
+                    let operand2Evalutation = evaluate(operand1Evalutation.remainingOps)
+                    if let operand2 = operand2Evalutation.result
+                    {
+                        return (operation(operand1,operand2), operand2Evalutation.remainingOps)
                     }
                 }
+                
+                // default : break
+                
             }
         }
         return (nil, ops)
     }
     
-    func evaluate() -> Double? { // make optional because + or - or * or / isnt a double
-     let (result, remainder) = evaluate(opStack)
-        print("\(result) with \(remainder) left over")
-        return result
+    func evaluate() ->(result :Double?, description :String?)
+    {
+        let (result, remainder) = evaluate(opStack)
+        print("\(opStack) = \(result) with \(remainder) left over")
+        
+        var currentString = descriptionString(opStack).resultString
+        if let newString =  descriptionString(remainder).resultString
+        {
+            if let currentStringCheck =  currentString
+            {
+                currentString = newString + "," + currentStringCheck
+                
+            }
+        }
+        
+        return (result, currentString)
     }
     
     func pushOperand(operand: Double) -> Double? {
         opStack.append(Op.Operand(operand))
-        return evaluate()
+        return evaluate().result
     }
     
     func removeOperand(operand: Double) -> Double {
@@ -132,12 +161,13 @@ class CalculatorBrain
         return returnAll
     }
     
-    func performOperation(symbol: String) -> Double? {
-        if let operation = knownOps[symbol] {
+    func performOperation(symbol : String) ->(result :Double?, description :String?)
+    {
+        if let operation = knownOps[symbol]
+        {
             opStack.append(operation)
-            print("operation: \(operation)")
-            print("operation: \(symbol)")
         }
+        
         return evaluate()
     }
     
@@ -145,4 +175,72 @@ class CalculatorBrain
         opStack.removeAll()
         return 0.0
     }
+    
+    private func descriptionString( ops : [Op]) ->(resultString :String?, remainingOps :[Op])
+    {
+        var returnString = ""
+        
+        if !ops.isEmpty
+        {
+            var remainingOps = ops
+            let op  = remainingOps.removeLast()
+            switch op
+            {
+                
+            case .Operand(_) :
+                returnString = returnString + op.description
+                return(returnString, remainingOps)
+            case .Variable(let variable) :
+                if let value = variableValues[variable]
+                {
+                    returnString = returnString + "m"
+                    return(returnString, remainingOps)
+                }
+                else
+                {
+                    returnString = returnString + "m"
+                    return(returnString, remainingOps)
+                }
+                
+                
+            case .UnaryOperation(_,  _) :
+                
+                let operandEvalutation = descriptionString(remainingOps)
+                if let operandString = operandEvalutation.resultString
+                {
+                    returnString = returnString + op.description +  "(" + operandString  + ")"
+                    return (returnString, operandEvalutation.remainingOps)
+                }
+                
+            case .BinaryOperation(_,  _):
+                let operand1 = descriptionString(remainingOps)
+                if let operand1Ev = operand1.resultString
+                {
+                    let operand2 = descriptionString(operand1.remainingOps)
+                    if let operand2Ev = operand2.resultString
+                    {
+                        if (operand2.remainingOps.count > 0 )
+                        {
+                            returnString = returnString + "(" + operand2Ev + op.description + operand1Ev + ")"
+                        }
+                        else
+                        {
+                            returnString = returnString + operand2Ev + op.description + operand1Ev
+                        }
+                        return (returnString, operand2.remainingOps)
+                    }
+                }
+            }
+        }
+        return (returnString, ops)
+    }
+    
+    func graphicDisplay() -> (result :Double?, description :String?)
+    {
+        let (result, _) = evaluate(opStack)
+        let currentString = descriptionString(opStack).resultString
+        return (result, currentString)
+    }
+    
+    
 }
