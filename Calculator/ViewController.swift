@@ -115,7 +115,7 @@ class ViewController: UIViewController {
     }
     
     func setValueForAs(let getalM: Double?) {
-        brain.setValueForGo("M", value: getalM!)
+        brain.setValueForGo("m", value: getalM!)
         let resultString = brain.evaluate()
         if let result = resultString.result {
             displayValue = result

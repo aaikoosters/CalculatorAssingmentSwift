@@ -74,7 +74,8 @@ class CalculatorBrain
     var variableValues = [String :Double]()
     func setValueForGo( GO : String, value : Double)
     {
-        
+        print("dit is de gooo valuee: ", GO)
+        print("dit is de gooo valuee: ", value)
         variableValues.updateValue(value, forKey: GO)
     }
     
@@ -93,7 +94,7 @@ class CalculatorBrain
                 return(operand, remainingOps)
             case .Variable(let variable) :
                 let value = variableValues[variable]
-                print("dit is de facking valueeee jaaa", value)
+                print("dit is de valueeee jaaa", value)
                 return (value, remainingOps)
                 
             case .UnaryOperation(_, let operation) :
@@ -126,17 +127,17 @@ class CalculatorBrain
         let (result, remainder) = evaluate(opStack)
         print("\(opStack) = \(result) with \(remainder) left over")
         
-        var currentString = descriptionString(opStack).resultString
-        if let newString =  descriptionString(remainder).resultString
+        var opStackValue = descriptionString(opStack).resultString
+        if let inRemainderValue =  descriptionString(remainder).resultString
         {
-            if let currentStringCheck =  currentString
+            if let currentOpStackCheck =  opStackValue
             {
-                currentString = newString + "," + currentStringCheck
+                opStackValue = inRemainderValue + "," + currentOpStackCheck
                 
             }
         }
         
-        return (result, currentString)
+        return (result, opStackValue)
     }
     
     func pushOperand(symbol: String) -> Double?
