@@ -164,12 +164,10 @@ class AxesDrawer
         let resultValue = brain?.evaluate()
         if let result = resultValue?.result
         {
-            print("dit is het result uit doMath ", result)
             return result
         }
         else
         {
-            print("091987328ioufkajhsdfahj19yu23912tu1986uiyouryutiopyrtekasfd")
             return 0.0
         }
     }

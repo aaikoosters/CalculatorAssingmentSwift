@@ -108,10 +108,20 @@ class ViewController: UIViewController {
                 setValueForAs(memValue)
             case "M":
                 display.text! = String(memValue)
+                let vari = sender.currentTitle!
+                pushVariable(vari)
+            
         default: break
         }
         userTyped = false
         
+    }
+
+    func pushVariable(vari: String) {
+        let variable = vari
+        if let result = brain.pushOperand(variable) {
+            displayValue = result
+        }
     }
     
     func setValueForAs(let getalM: Double?) {
@@ -119,31 +129,11 @@ class ViewController: UIViewController {
         let resultString = brain.evaluate()
         if let result = resultString.result {
             displayValue = result
-            print("dit is eeen fackingg result jaaaaa", result)
         }
         if let test = resultString.description {
             somDisplay.text = test
-            print("dit is eeen fackingg testttt jaaaaa", test)
         }
     }
-    
-    @IBAction func pushTableValue()
-    {
-        brain.setValueForGo("GO", value: displayValue)
-        
-        let resultString = brain.evaluate()
-        
-        if let result = resultString.result
-        {
-            displayValue = result
-        }
-        if let text = resultString.description
-        {
-            somDisplay.text = text
-        }
-    }
-
-    
     
     // Door middel van '\()' kan je argumenten in een string opnemen
     @IBAction func enter() {

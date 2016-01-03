@@ -74,8 +74,6 @@ class CalculatorBrain
     var variableValues = [String :Double]()
     func setValueForGo( GO : String, value : Double)
     {
-        print("dit is de gooo valuee: ", GO)
-        print("dit is de gooo valuee: ", value)
         variableValues.updateValue(value, forKey: GO)
     }
     
@@ -94,7 +92,6 @@ class CalculatorBrain
                 return(operand, remainingOps)
             case .Variable(let variable) :
                 let value = variableValues[variable]
-                print("dit is de valueeee jaaa", value)
                 return (value, remainingOps)
                 
             case .UnaryOperation(_, let operation) :
@@ -199,7 +196,7 @@ class CalculatorBrain
                 returnString = returnString + op.description
                 return(returnString, remainingOps)
             case .Variable(let variable) :
-                if let value = variableValues[variable]
+                if let _ = variableValues[variable]
                 {
                     returnString = returnString + "m"
                     return(returnString, remainingOps)

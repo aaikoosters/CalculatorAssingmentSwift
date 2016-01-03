@@ -228,18 +228,17 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6cw-q4-96u">
                                 <rect key="frame" x="396" y="511" width="84" height="81"/>
+                                <color key="backgroundColor" red="1" green="1" blue="0.43988569630872482" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="33"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ysv-Bn-Zih">
                                 <rect key="frame" x="304" y="511" width="84" height="81"/>
+                                <color key="backgroundColor" red="1" green="1" blue="0.43988569630872482" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="33"/>
-                                <state key="normal" title="GO"/>
-                                <connections>
-                                    <action selector="pushTableValue" destination="BYZ-38-t0r" eventType="touchUpInside" id="g8v-j6-g0h"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T9A-2w-zQv">
                                 <rect key="frame" x="488" y="154.5" width="84" height="81"/>
+                                <color key="backgroundColor" red="1" green="1" blue="0.43988569630872482" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <state key="normal" title="COS"/>
                                 <connections>
@@ -248,6 +247,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hEK-xM-jip">
                                 <rect key="frame" x="488" y="243.5" width="84" height="81"/>
+                                <color key="backgroundColor" red="1" green="1" blue="0.43988569630872482" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <state key="normal" title="SIN"/>
                                 <connections>
@@ -256,6 +256,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Te7-tk-gRH">
                                 <rect key="frame" x="488" y="332" width="84" height="81.5"/>
+                                <color key="backgroundColor" red="1" green="1" blue="0.43988569630872482" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <state key="normal" title="TAN"/>
                                 <connections>
@@ -264,10 +265,12 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v6P-3j-3oY">
                                 <rect key="frame" x="488" y="422" width="84" height="81"/>
+                                <color key="backgroundColor" red="1" green="1" blue="0.43988569630872482" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="33"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o4r-m8-tpO">
                                 <rect key="frame" x="488" y="511" width="84" height="81"/>
+                                <color key="backgroundColor" red="1" green="1" blue="0.43988569630872482" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="33"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="luC-sy-s9q">
