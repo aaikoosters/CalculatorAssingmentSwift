@@ -26,7 +26,7 @@ class GraphicViewController: UIViewController
     override func viewDidAppear(animated: Bool)
     {
         super.viewDidAppear(animated)
-        //graphView.axes.brain = brain
+        graphicView.axes.brain = brain
         let evaluate = graphicView.axes.brain?.graphicDisplay()
         label.text = evaluate?.description
     }

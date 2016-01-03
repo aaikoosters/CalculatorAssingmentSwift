@@ -93,6 +93,7 @@ class CalculatorBrain
                 return(operand, remainingOps)
             case .Variable(let variable) :
                 let value = variableValues[variable]
+                print("dit is de facking valueeee jaaa", value)
                 return (value, remainingOps)
                 
             case .UnaryOperation(_, let operation) :
@@ -136,6 +137,12 @@ class CalculatorBrain
         }
         
         return (result, currentString)
+    }
+    
+    func pushOperand(symbol: String) -> Double?
+    {
+        opStack.append(Op.Variable(symbol))
+        return evaluate().result
     }
     
     func pushOperand(operand: Double) -> Double? {
@@ -241,6 +248,5 @@ class CalculatorBrain
         let currentString = descriptionString(opStack).resultString
         return (result, currentString)
     }
-    
     
 }

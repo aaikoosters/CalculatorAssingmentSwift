@@ -105,12 +105,26 @@ class ViewController: UIViewController {
             case "M+":
                 memValue = Double(display.text!)!
                 geheugen = memValue
+                setValueForAs(memValue)
             case "M":
                 display.text! = String(memValue)
         default: break
         }
         userTyped = false
         
+    }
+    
+    func setValueForAs(let getalM: Double?) {
+        brain.setValueForGo("M", value: getalM!)
+        let resultString = brain.evaluate()
+        if let result = resultString.result {
+            displayValue = result
+            print("dit is eeen fackingg result jaaaaa", result)
+        }
+        if let test = resultString.description {
+            somDisplay.text = test
+            print("dit is eeen fackingg testttt jaaaaa", test)
+        }
     }
     
     @IBAction func pushTableValue()
@@ -153,6 +167,16 @@ class ViewController: UIViewController {
             somDisplay.text! = brain.getAll()!
             let result = brain.removeOperand(displayValue)
             displayValue = result
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let GraphicController = segue.destinationViewController as? GraphicViewController {
+            if let identifier = segue.identifier {
+                if identifier == "graphic" {
+                    GraphicController.brain = brain
+                }
+            }
         }
     }
 }

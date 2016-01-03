@@ -440,7 +440,7 @@
                     <navigationItem key="navigationItem" id="I7L-hY-nk8">
                         <barButtonItem key="rightBarButtonItem" title="Detail" id="pid-q5-XlL">
                             <connections>
-                                <segue destination="Jf9-EO-eqr" kind="showDetail" id="vBH-vR-TUc"/>
+                                <segue destination="Jf9-EO-eqr" kind="showDetail" identifier="graphic" id="vBH-vR-TUc"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
